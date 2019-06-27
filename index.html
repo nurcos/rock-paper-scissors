@@ -1,78 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <meta charset="utf-8">
   <title>Rock paper scissors in console</title>
 </head>
 <body>
 
-  <script>
+  <h1>Rock, Paper, Scissors!</h1>
 
-    let playerSelection;
-    let computerSelection;
-    let wins = 0;
-    let losses = 0;
-    let draws = 0;
-
-    function computerPlay() {
-      switch (Math.floor(Math.random() * 3) + 1){
-        case 1:
-          return 'Rock';
-        case 2:
-          return 'Paper';
-        case 3:
-          return 'Scissors';
-      }
-    }
-
-    function playRound(){
-      playerSelection = prompt('Choose: ');
-      computerSelection = computerPlay();
-
-      playerSelection = playerSelection.toLowerCase();
-      upperCaseFirstLetter = playerSelection.charAt(0).toUpperCase();
-      upperCaseFirstLetter += playerSelection.slice(1);
-      playerSelection = upperCaseFirstLetter;
-
-      if (playerSelection == 'Rock' && computerSelection == 'Scissors' || playerSelection == 'Paper' && computerSelection == 'Rock' || playerSelection == 'Scissors' && computerSelection == 'Paper'){
-        wins++;
-        return 'You win this round! ' + playerSelection + ' beats ' + computerSelection;
-      }
-      else if (playerSelection == 'Rock' && computerSelection == 'Paper' || playerSelection == 'Paper' && computerSelection == 'Scissors' || playerSelection == 'Scissors' && computerSelection == 'Rock'){
-        losses++;
-        return 'You lose this round! ' + playerSelection + ' loses to ' + computerSelection;
-      }
-      else {
-        draws++;
-        return 'You draw this round! ' + playerSelection + ' ties ' + computerSelection;
-      }
-    }
-
-    function game(){
-      console.log(playRound());
-      console.log(playRound());
-      console.log(playRound());
-      console.log(playRound());
-      console.log(playRound());
-
-      if (wins > losses){
-        console.log('YOU WIN THE GAME.');
-      }
-      else if  (wins < losses){
-        console.log('YOU LOSE THE GAME.');
-      }
-      else {
-        console.log('YOU DRAW THE GAME.');
-      }
-
-      console.log('You won ' + wins + ', lost ' + losses + ', and drew ' + draws + '.')
-
-      wins = 0;
-      losses = 0;
-      draws = 0;
-    }
-
-  </script>
+  <div class="container">
+    <h2>Choose your move:</h2>
+    <button class="selection">Rock</button>
+    <button class="selection">Paper</button>
+    <button class="selection">Scissors</button>
+  </div>
 
 </body>
 </html>
+
+<script>
+  let playerSelection, computerSelection;
+  let wins = 0;
+  let losses = 0;
+  let draws = 0;
+
+  function computerPlay() {
+    switch (Math.floor(Math.random() * 3) + 1){
+      case 1:
+        return 'Rock';
+      case 2:
+        return 'Paper';
+      case 3:
+        return 'Scissors';
+    }
+  }
+
+  function playRound(){
+    playerSelection = prompt('Choose: ');
+    computerSelection = computerPlay();
+
+    playerSelection = playerSelection.toLowerCase();
+    upperCaseFirstLetter = playerSelection.charAt(0).toUpperCase();
+    upperCaseFirstLetter += playerSelection.slice(1);
+    playerSelection = upperCaseFirstLetter;
+
+    if (playerSelection == 'Rock' && computerSelection == 'Scissors' || playerSelection == 'Paper' && computerSelection == 'Rock' || playerSelection == 'Scissors' && computerSelection == 'Paper'){
+      wins++;
+      return 'You win this round! ' + playerSelection + ' beats ' + computerSelection;
+    }
+    else if (playerSelection == 'Rock' && computerSelection == 'Paper' || playerSelection == 'Paper' && computerSelection == 'Scissors' || playerSelection == 'Scissors' && computerSelection == 'Rock'){
+      losses++;
+      return 'You lose this round! ' + playerSelection + ' loses to ' + computerSelection;
+    }
+    else {
+      draws++;
+      return 'You draw this round! ' + playerSelection + ' ties ' + computerSelection;
+    }
+  }
+
+  function game(){
+    console.log(playRound());
+    console.log(playRound());
+    console.log(playRound());
+    console.log(playRound());
+    console.log(playRound());
+
+    if (wins > losses){
+      console.log('YOU WIN THE GAME.');
+    }
+    else if  (wins < losses){
+      console.log('YOU LOSE THE GAME.');
+    }
+    else {
+      console.log('YOU DRAW THE GAME.');
+    }
+
+    console.log('You won ' + wins + ', lost ' + losses + ', and drew ' + draws + '.')
+
+    wins = 0;
+    losses = 0;
+    draws = 0;
+  }
+</script>
