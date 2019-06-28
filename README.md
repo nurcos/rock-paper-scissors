@@ -1,1 +1,1 @@
-javascript game from console
+original game was console only, added GUI at later done after learning Javascript basics
