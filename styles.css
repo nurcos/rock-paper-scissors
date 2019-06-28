@@ -1,27 +1,40 @@
 body {
+  font-family: 'DM Sans', sans-serif;
   background-color: lightgrey;
 }
 
 h1 {
+  text-align: center;
+}
 
+h2 {
+  padding-top: 5%;
 }
 
 .container {
+  position: relative;
   width: 30%;
-  padding: 5%;
-  border: 2px solid black;
+  padding: 0 5% 5% 5%;
   margin: 10% auto 0 auto;
-  vertical-align: middle;
   text-align: center;
   background-color: black;
   color: white;
 }
 
 .selection {
-  height: 30%;
   width: 20%;
   padding: 10px;
   background-color: lightblue;
   border-radius: 5px;
   margin-right: 10px;
+}
+
+#your-points {
+  position: absolute;
+  left: 10px;
+}
+
+#cpu-points {
+  position: absolute;
+  right: 10px;
 }

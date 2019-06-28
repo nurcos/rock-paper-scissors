@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Rock paper scissors in console</title>
 </head>
 <body>
@@ -10,10 +11,19 @@
   <h1>Rock, Paper, Scissors!</h1>
 
   <div class="container">
+    <p id="your-points">Your Points: 0</p>
+    <p id="cpu-points">CPU Points: 0</p>
+
     <h2>Choose your move:</h2>
-    <button class="selection">Rock</button>
-    <button class="selection">Paper</button>
-    <button class="selection">Scissors</button>
+
+    <div class="buttons">
+      <button class="selection" id="rock">Rock</button>
+      <button class="selection" id="paper">Paper</button>
+      <button class="selection" id="scissors">Scissors</button>
+    </div>
+
+    <p id="content">-</p>
+
   </div>
 
 </body>
@@ -23,7 +33,6 @@
   let playerSelection, computerSelection;
   let wins = 0;
   let losses = 0;
-  let draws = 0;
 
   function computerPlay() {
     switch (Math.floor(Math.random() * 3) + 1){
@@ -37,7 +46,6 @@
   }
 
   function playRound(){
-    playerSelection = prompt('Choose: ');
     computerSelection = computerPlay();
 
     playerSelection = playerSelection.toLowerCase();
@@ -54,32 +62,34 @@
       return 'You lose this round! ' + playerSelection + ' loses to ' + computerSelection;
     }
     else {
-      draws++;
       return 'You draw this round! ' + playerSelection + ' ties ' + computerSelection;
     }
   }
 
-  function game(){
-    console.log(playRound());
-    console.log(playRound());
-    console.log(playRound());
-    console.log(playRound());
-    console.log(playRound());
+  const container = document.querySelector('.container');
+  const content = document.querySelector('#content');
+  const yourPoints = document.querySelector('#your-points');
+  const cpuPoints = document.querySelector('#cpu-points');
 
-    if (wins > losses){
-      console.log('YOU WIN THE GAME.');
-    }
-    else if  (wins < losses){
-      console.log('YOU LOSE THE GAME.');
-    }
-    else {
-      console.log('YOU DRAW THE GAME.');
-    }
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      playerSelection = button.id;
+      content.textContent = playRound();
+      yourPoints.textContent = 'Your Points: ' + wins;
+      cpuPoints.textContent = 'CPU Points: ' + losses;
 
-    console.log('You won ' + wins + ', lost ' + losses + ', and drew ' + draws + '.')
+      if (wins == 5) {
+        wins = 0;
+        losses = 0;
+        content.textContent = 'You win the game! Choose a move to play again';
+      }
+      else if (losses == 5) {
+        wins = 0;
+        losses = 0;
+        content.textContent = 'You lose the game! Choose a move to play again';
+      }
+    });
+  });
 
-    wins = 0;
-    losses = 0;
-    draws = 0;
-  }
 </script>
